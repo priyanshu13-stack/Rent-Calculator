@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rent Calculation Result</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function copyToClipboard() {
+            const resultText = document.getElementById('resultText').innerText;
+            navigator.clipboard.writeText(resultText).then(function() {
+                alert('Copied to clipboard');
+            }, function(err) {
+                alert('Failed to copy: ', err);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Calculation Result</h2>
+        <br>
+        <div id="resultText">
+            <p>Monthly Rent: ₹ {{ monthly_rent }} /-</p>
+            <p>Electricity Usage: {{ electricity_usage }} units</p>
+            <p>Cost per Unit: ₹ {{ cost_per_unit }} /-</p>
+            <p>Electricity Bill: ₹ {{ electricity_bill }} /-</p>
+            <p><strong>Total Rent (including electricity bill): ₹ {{ total_rent }} /-</strong></p>
+        </div>
+        <button class="btn btn-secondary" onclick="copyToClipboard()">Copy to Clipboard</button>
+        <a href="{% url 'calculate_rent' %}" class="btn btn-primary">Calculate Again</a>
+    </div>
+</body>
+</html>
